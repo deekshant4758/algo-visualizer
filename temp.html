@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quick Sort Visualization</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            display: flex;
+            align-items: flex-end;
+            height: 400px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .bar {
+            width: 20px;
+            background-color: #3498db;
+            margin: 0 2px;
+            transition: height 0.3s;
+        }
+
+        .bar.cyan {
+            background-color: cyan;
+        }
+
+        .bar.yellow {
+            background-color: yellow;
+        }
+
+        .bar.orange {
+            background-color: orange;
+        }
+
+        .bar.pink {
+            background-color: pink;
+        }
+
+        .bar.green {
+            background-color: green;
+        }
+
+        .bar.red {
+            background-color: #e43f5a;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #3498db;
+        }
+
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <h1>Quick Sort Visualization</h1>
+    <button class="quickSort">Start Quick Sort</button>
+    <div class="container">
+        <!-- Bars will be dynamically added here -->
+    </div>
+    <script>
+        async function partitionLomuto(ele, l, r) {
+            const pivot = array[high];
+            let i = low - 1;
+
+            for (let j = low; j < high; j++) {
+                if (array[j] < pivot) {
+                    i++;
+                    animations.push([high, i, j]);
+                    [array[i], array[j]] = [array[j], array[i]];
+                }
+            }
+            animations.push([high, i + 1, high]);
+            [array[i + 1], array[high]] = [array[high], array[i + 1]];
+
+            return i + 1;
+        }
+
+        async function quickSort(ele, l, r) {
+            const animations = [];
+            if (low < high) {
+                const pivotIndex = partition(array, low, high, animations);
+                quickSort(array, low, pivotIndex - 1, animations);
+                quickSort(array, pivotIndex + 1, high, animations);
+            }
+            return animations;
+        }
+
+        const quickSortbtn = document.querySelector(".quickSort");
+        quickSortbtn.addEventListener('click', async function () {
+            let container = document.querySelector('.container');
+            container.innerHTML = '';
+            let ele = [];
+            let arraySize = 15; // Adjust the array size as needed
+
+            for (let i = 0; i < arraySize; i++) {
+                let bar = document.createElement('div');
+                bar.className = 'bar';
+                bar.style.height = `${Math.random() * 200 + 10}px`;
+                ele.push(bar);
+                container.appendChild(bar);
+            }
+
+            let l = 0;
+            let r = ele.length - 1;
+            disableSortingBtn();
+            await quickSort(ele, l, r);
+            enableSortingBtn();
+        });
+
+        // Additional helper functions (disable/enable buttons, etc.) can be added as needed
+    </script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+    /* styles.css */
+
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #1e3250;
+    }
+
+    header{
+        background-color: #3fc18c;
+        color: white;
+        padding: 10px;
+        text-align: center;
+    }
+
+    main {
+        display: flex;
+        justify-content: space-between;
+        padding: 20px;
+    }
+
+    #grid-section, #controls-section {
+        color:white;
+        font-family: 'Sam pro';
+        flex: 1;
+        margin: 0 10px;
+        border: 1px solid #ccc;
+        padding: 20px;
+    }
+
+    button {
+        background-color: #333;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #555;
+    }
+
+    footer {
+        background-color: #3fc18c;
+        color: white;
+        padding: 10px;
+        text-align: center;
+
+        bottom: 0;
+        width: 100%;
+    }
